@@ -1,0 +1,150 @@
+/* Página de estado da Veritud. Paleta do kit oficial (brand/veritud/tokens.css). */
+:root {
+  --navy: #16384a;
+  --teal: #1c6ea4;
+  --ink: #1b2733;
+  --muted: #5d6b7a;
+  --fundo: #f7fafd;
+  --cartao: #ffffff;
+  --linha: #d7e2ee;
+  --linha-suave: #e7eef6;
+  --ok: #0f6e56;
+  --ok-fundo: #e1f5ee;
+  --aviso: #8a6500;
+  --aviso-fundo: #faeeda;
+  --aviso-barra: #d9a406;
+  --perigo: #c0392b;
+  --perigo-fundo: #fcebeb;
+  --vazio: #dfe7ef;
+  --neutro-fundo: #eef4fa;
+  --fonte: 'Instrument Sans', Helvetica, Arial, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --navy: #eaf2f8;
+    --teal: #7cc4ea;
+    --ink: #dfe8f0;
+    --muted: #9db0c1;
+    --fundo: #0e1b24;
+    --cartao: #15262f;
+    --linha: #2a3f4c;
+    --linha-suave: #22343f;
+    --ok: #5fd0ae;
+    --ok-fundo: #12352c;
+    --aviso: #f0c453;
+    --aviso-fundo: #3a2f12;
+    --aviso-barra: #d9a406;
+    --perigo: #ff8f84;
+    --perigo-fundo: #401d1a;
+    --vazio: #2a3f4c;
+    --neutro-fundo: #1b2e39;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--ink);
+  font-family: var(--fonte);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+a { color: var(--teal); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+
+.contentor { width: 100%; max-width: 792px; margin: 0 auto; padding: 0 16px; }
+
+.so-leitores {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+
+/* Topo */
+.topo { background: var(--cartao); border-bottom: 1px solid var(--linha-suave); }
+.topo-linha { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 68px; }
+.marca { display: inline-flex; }
+.marca img { display: block; height: 36px; width: auto; }
+.topo-titulo { color: var(--muted); font-size: .9375rem; }
+
+main.contentor { padding-top: 32px; padding-bottom: 56px; }
+
+.eyebrow {
+  margin: 40px 0 12px;
+  font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Resumo */
+.resumo {
+  display: flex; align-items: center; gap: 16px;
+  padding: 22px 24px;
+  border: 1px solid var(--linha); border-radius: 12px;
+  background: var(--cartao);
+}
+.resumo-titulo { margin: 0; font-size: clamp(1.25rem, 1.1rem + .8vw, 1.5rem); font-weight: 600; line-height: 1.25; color: var(--navy); text-wrap: balance; }
+.resumo-quando { margin: 4px 0 0; font-size: .9375rem; color: var(--muted); }
+.resumo-sinal { flex: none; width: 14px; height: 14px; border-radius: 50%; background: var(--vazio); }
+
+.resumo-ok { background: var(--ok-fundo); border-color: transparent; }
+.resumo-ok .resumo-sinal { background: var(--ok); }
+.resumo-aviso { background: var(--aviso-fundo); border-color: transparent; }
+.resumo-aviso .resumo-sinal { background: var(--aviso-barra); }
+.resumo-mau { background: var(--perigo-fundo); border-color: transparent; }
+.resumo-mau .resumo-sinal { background: var(--perigo); }
+.resumo-espera { background: var(--neutro-fundo); border-color: transparent; }
+
+.aviso { margin: 16px 0 0; padding: 14px 18px; border-radius: 12px; background: var(--neutro-fundo); font-size: .9375rem; }
+
+/* Serviços */
+.servicos { list-style: none; margin: 0; padding: 0; border: 1px solid var(--linha); border-radius: 12px; background: var(--cartao); }
+.servico { padding: 20px 24px; }
+.servico + .servico { border-top: 1px solid var(--linha-suave); }
+.servico-cabeca { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.servico-nome { margin: 0; font-size: 1.125rem; font-weight: 600; color: var(--navy); }
+.servico-descricao { margin: 2px 0 0; font-size: .9375rem; color: var(--muted); }
+
+.etiqueta { display: inline-flex; align-items: center; gap: 8px; font-size: .9375rem; font-weight: 600; white-space: nowrap; }
+.etiqueta::before { content: ''; width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+.etiqueta-ok { color: var(--ok); }
+.etiqueta-aviso { color: var(--aviso); }
+.etiqueta-mau { color: var(--perigo); }
+.etiqueta-vazio { color: var(--muted); }
+
+.barras { display: flex; gap: 2px; height: 34px; margin-top: 14px; }
+.barra { flex: 1 1 0; min-width: 0; border-radius: 2px; background: var(--vazio); }
+.dia-ok { background: var(--ok); }
+.dia-parcial { background: var(--aviso-barra); }
+.dia-mau { background: var(--perigo); }
+.dia-vazio { background: var(--vazio); }
+
+.barras-pe { display: flex; justify-content: space-between; gap: 12px; margin-top: 8px; font-size: .8125rem; color: var(--muted); }
+.barras-pe strong { font-family: var(--mono); font-weight: 500; font-variant-numeric: tabular-nums; color: var(--ink); }
+.janela-curta { display: none; }
+
+/* Em ecrãs estreitos, 90 barras ficam finas de mais: mostram-se os últimos 30 dias. */
+@media (max-width: 600px) {
+  .barra:nth-child(-n+60) { display: none; }
+  .janela-longa { display: none; }
+  .janela-curta { display: inline; }
+  .servico { padding: 18px 16px; }
+  .resumo { padding: 18px 16px; }
+  .topo-titulo { font-size: .875rem; }
+}
+
+/* Legenda e explicação */
+.legenda { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 14px; font-size: .8125rem; color: var(--muted); }
+.legenda span { display: inline-flex; align-items: center; gap: 8px; }
+.amostra { width: 10px; height: 14px; border-radius: 2px; display: inline-block; }
+
+.como p { margin: 0 0 12px; max-width: 68ch; font-size: .9375rem; color: var(--muted); }
+
+/* Rodapé */
+.rodape { border-top: 1px solid var(--linha-suave); padding: 22px 0 36px; font-size: .875rem; color: var(--muted); }
+.rodape .contentor { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; }

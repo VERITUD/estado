@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>Estado dos serviços · Veritud</title>
+<meta name="description" content="Disponibilidade do canal de denúncias, da plataforma e do website da Veritud, verificada automaticamente de fora da nossa infraestrutura.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<header class="topo">
+  <div class="contentor topo-linha">
+    <a class="marca" href="https://www.veritud.com/" aria-label="Veritud — ir para o website">
+      <picture>
+        <source srcset="logo-escuro.svg" media="(prefers-color-scheme: dark)">
+        <img src="logo.svg" alt="Veritud" width="144" height="36">
+      </picture>
+    </a>
+    <span class="topo-titulo">Estado dos serviços</span>
+  </div>
+</header>
+
+<main class="contentor">
+  <h1 class="so-leitores">Estado dos serviços da Veritud</h1>
+
+  <section id="resumo" class="resumo resumo-espera" aria-live="polite">
+    <span class="resumo-sinal" aria-hidden="true"></span>
+    <div>
+      <p id="resumo-titulo" class="resumo-titulo">A carregar o estado dos serviços…</p>
+      <p id="resumo-quando" class="resumo-quando">&nbsp;</p>
+    </div>
+  </section>
+
+  <noscript>
+    <p class="aviso">Esta página precisa de JavaScript para mostrar o estado atual. Os dados estão em <a href="estado.json">estado.json</a>.</p>
+  </noscript>
+
+  <section aria-labelledby="t-servicos">
+    <h2 id="t-servicos" class="eyebrow">Serviços</h2>
+    <ul id="servicos" class="servicos"></ul>
+  </section>
+
+  <section class="legenda" aria-label="Legenda das barras">
+    <span><i class="amostra dia-ok"></i>Sem falhas</span>
+    <span><i class="amostra dia-parcial"></i>Falhas curtas</span>
+    <span><i class="amostra dia-mau"></i>Indisponível por mais tempo</span>
+    <span><i class="amostra dia-vazio"></i>Sem dados</span>
+  </section>
+
+  <section class="como" aria-labelledby="t-como">
+    <h2 id="t-como" class="eyebrow">Como é medido</h2>
+    <p>Cada serviço é pedido automaticamente a cada 5 minutos, aproximadamente, a partir de fora da infraestrutura da Veritud. Um serviço só aparece como indisponível depois de duas verificações falhadas seguidas, para uma falha de rede passageira não contar como avaria.</p>
+    <p>Esta página está alojada fora da plataforma, por isso continua disponível mesmo que a plataforma não esteja. Não usa cookies nem recolhe dados de quem a visita. Cada dia das barras corresponde a um dia em UTC.</p>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="contentor">
+    <a href="https://www.veritud.com/">www.veritud.com</a>
+    <span>Veritud — canal de denúncias e compliance</span>
+  </div>
+</footer>
+
+<script src="pagina.js"></script>
+</body>
+</html>

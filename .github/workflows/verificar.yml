@@ -1,0 +1,49 @@
+name: verificar
+
+# Pede cada serviço da Veritud a partir de fora da infraestrutura dela e publica
+# a página de estado. O agendamento do GitHub não é pontual: «de 5 em 5 minutos»
+# pode, na prática, ser de 5 a 15.
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write # gravar dados/historico.json (uma vez por dia e quando um estado muda)
+  pages: write
+  id-token: write
+
+concurrency:
+  group: verificar
+  cancel-in-progress: false
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment:
+      name: github-pages
+      url: ${{ steps.publicar.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - id: paginas
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      - name: verificar os serviços
+        id: verificar
+        env:
+          # Entre gravações no repositório, o histórico vive na página publicada.
+          ESTADO_PUBLICADO_URL: ${{ steps.paginas.outputs.base_url }}/estado.json
+        run: node verificar.mjs
+      - name: gravar o histórico no repositório
+        if: steps.verificar.outputs.gravar == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dados/historico.json
+          git diff --cached --quiet || git commit -m "dados: histórico de $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: site
+      - id: publicar
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
