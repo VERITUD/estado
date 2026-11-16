@@ -21,7 +21,8 @@ website da Veritud.
 
 Não tem código da plataforma, credenciais nem dados pessoais. Guarda só
 «respondeu / não respondeu» por serviço e por dia. A página não usa cookies
-nem recolhe dados de quem a visita.
+nem ferramentas de medição. Está alojada no GitHub Pages, que, como qualquer
+alojamento, recebe o endereço IP de quem a visita.
 
 ## Desenvolvimento
 
